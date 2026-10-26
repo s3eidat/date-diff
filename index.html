@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' data: blob:; worker-src 'self' blob:; manifest-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Date Diff — Days Between Dates, Business Days, Add Days, Hijri | S3eidat Tools</title>
+<meta name="description" content="Days, weeks, months and business days between two dates (Fri–Sat or Sat–Sun weekends), add or subtract days, weeks or months, and convert Gregorian and Hijri dates. Free and private.">
+<meta property="og:title" content="Date Diff — free, private date calculator">
+<meta property="og:description" content="Days between dates, add or subtract days, Hijri dates. Runs 100% in your browser.">
+<meta property="og:image" content="screenshot.png">
+<link rel="icon" href="kit/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="app.css">
+<script src="kit/kit.js"></script>
+</head>
+<body data-tool="date-diff">
+<main class="s3-main">
+  <section class="s3-hero">
+    <h1>Date Diff</h1>
+    <p>Count the days, weeks, months and working days between two dates, add or subtract time from a date, and see every date in the Hijri calendar too.</p>
+  </section>
+
+  <div class="row weekend-row">
+    <span class="muted">Weekend</span>
+    <div class="seg" id="weekend" role="group" aria-label="Weekend days">
+      <button type="button" data-v="fri-sat" aria-pressed="true">Fri–Sat</button>
+      <button type="button" data-v="sat-sun" aria-pressed="false">Sat–Sun</button>
+      <button type="button" data-v="fri" aria-pressed="false">Fri only</button>
+      <button type="button" data-v="sun" aria-pressed="false">Sun only</button>
+    </div>
+  </div>
+
+  <div class="grid-2 dd-grid mt">
+    <section class="card stack">
+      <div class="row between">
+        <h2>Between two dates</h2>
+        <button class="btn ghost small" id="swap" aria-label="Swap dates"><svg class="i"><use href="#i-refresh"/></svg>Swap</button>
+      </div>
+      <div class="grid-2 tight">
+        <label class="field">From
+          <input class="input" id="a" type="date" min="0001-01-01" max="9999-12-31">
+          <span class="hint" id="a-h"></span>
+        </label>
+        <label class="field">To
+          <input class="input" id="b" type="date" min="0001-01-01" max="9999-12-31">
+          <span class="hint" id="b-h"></span>
+        </label>
+      </div>
+      <label class="check"><input type="checkbox" id="incl"> Include the end date (+1 day)</label>
+      <div class="res" id="d-res"></div>
+      <div class="stats" id="d-stats"></div>
+      <div class="row end"><button class="btn small" id="d-copy"><svg class="i"><use href="#i-copy"/></svg>Copy</button></div>
+    </section>
+
+    <section class="card stack">
+      <h2>Add or subtract</h2>
+      <label class="field">Start date
+        <input class="input" id="s" type="date" min="0001-01-01" max="9999-12-31">
+        <span class="hint" id="s-h"></span>
+      </label>
+      <div class="row nowrap">
+        <div class="seg" id="op" role="group" aria-label="Add or subtract">
+          <button type="button" data-v="+" aria-pressed="true" aria-label="Add">+</button>
+          <button type="button" data-v="-" aria-pressed="false" aria-label="Subtract">−</button>
+        </div>
+        <input class="input n-in" id="n" inputmode="numeric" autocomplete="off" aria-label="Amount">
+        <select class="select grow" id="unit" aria-label="Unit">
+          <option value="d">days</option>
+          <option value="bd">business days</option>
+          <option value="w">weeks</option>
+          <option value="m">months</option>
+          <option value="y">years</option>
+        </select>
+      </div>
+      <div class="res" id="s-res"></div>
+      <p class="faint" id="s-note"></p>
+      <div class="row end"><button class="btn small" id="s-copy"><svg class="i"><use href="#i-copy"/></svg>Copy</button></div>
+    </section>
+  </div>
+
+  <section class="card mt">
+    <h2>Hijri → Gregorian</h2>
+    <div class="row hj-row">
+      <label class="field">Day <input class="input" id="hd" inputmode="numeric" autocomplete="off"></label>
+      <label class="field grow">Month
+        <select class="select" id="hm">
+          <option value="1">1 · Muharram</option><option value="2">2 · Safar</option><option value="3">3 · Rabiʻ I</option><option value="4">4 · Rabiʻ II</option>
+          <option value="5">5 · Jumada I</option><option value="6">6 · Jumada II</option><option value="7">7 · Rajab</option><option value="8">8 · Shaʻban</option>
+          <option value="9">9 · Ramadan</option><option value="10">10 · Shawwal</option><option value="11">11 · Dhuʻl-Qiʻdah</option><option value="12">12 · Dhuʻl-Hijjah</option>
+        </select>
+      </label>
+      <label class="field">Year (AH) <input class="input" id="hy" inputmode="numeric" autocomplete="off"></label>
+      <div class="res grow hj-res" id="h-res"></div>
+    </div>
+    <p class="faint">Hijri dates use the Umm al-Qura calendar built into your browser. Local moon-sighting can differ by a day.</p>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
